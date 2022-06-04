@@ -1,0 +1,411 @@
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+html {
+  height: 100%;
+  font-size: 20px;
+  font-family: "Times New Roman";
+}
+body {
+  height: 100%;
+}
+#root{
+  margin: 0 auto;
+  min-height: 100%;
+  position: relative;
+}
+#logo {
+  margin-bottom: 1em;
+  width: 100%;
+  text-align: center;
+}
+#logo img {
+  width: 70%;
+  padding-top:1em;
+  cursor: pointer;
+}
+nav {
+  padding: 1% 0;
+  width: 100%;
+  margin-bottom: 1em;
+  background-color: #f3f3f3;
+}
+#menu {
+  display: none;
+}
+nav ul {
+  width: 100%;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-around;
+  margin: 0;
+
+}
+nav ul li {
+  padding: 0.3em;
+  font-size: 1.2rem;
+  text-align: center;
+  list-style-type: none;
+  width: 17%;
+  border: 1px solid black;
+  border-radius: 0.5em;
+  cursor: pointer;
+  background-color: white;
+}
+
+.active {
+  background-color: red;
+}
+nav ul li:hover {
+  background-color: red;
+}
+main {
+  text-align: justify;
+  margin-bottom: 1em;
+
+}
+header {
+  width: 100%;
+  text-align: center;
+  margin-bottom: 1em;
+
+}
+h1 {
+  font-size: 2rem;
+  width: 100%;
+  text-transform: uppercase;
+  margin-bottom: 1em;
+}
+.blog{
+  margin-bottom: 2em;
+}
+h2{
+  font-size: 1.8rem;
+  width: 100%;
+  text-align: left;
+  margin-bottom: 1em;
+  text-decoration-line: underline;
+  clear: both;
+}
+h3 {
+  font-size: 1.6rem;
+  opacity: .4;
+  margin-bottom: 0.3em;
+}
+hgroup{
+  width: 100%;
+}
+hgroup h2{
+width: 100%;
+text-align: center;
+text-decoration: none;
+}
+hgroup h2 span {
+  text-decoration: underline;
+}
+#resume-photo {
+  text-align: center;
+  width: 100%;
+  margin-bottom: 1em;
+}
+#resume-photo img {
+  margin: 0 auto;
+  width: 40%;
+}
+#photo{
+  float: left;
+  width: 25%;
+  margin: 0 1em 2em 0;
+}
+#contact {
+  width: 100%;
+  margin-bottom: 2em;
+}
+p{
+  line-height: 1.5;
+  margin-bottom: 0.5em;
+}
+ul {
+  margin-left: 4%;
+}
+#attention {
+  font-size: 1.1rem;
+}
+#dipl{
+  width: 100%;
+  border-right: 1px solid black;
+  border-left: 1px solid black;
+  border-top: 1px solid black;
+}
+.img_dipl {
+  width: 100%;
+  padding: 1em;
+  border-bottom: 1px solid black;
+  margin-bottom: 1em
+}
+.img_dipl img {
+  margin: 0 auto;
+  width: 50%;
+  float: none;
+  display: block;
+  cursor: pointer;
+}
+#empty {
+  height: 120px;
+}
+.items {
+  display: flex;
+  align-items:center;
+  margin-bottom: 2em;
+  justify-content: space-around;
+  width: 100%;
+}
+.icons {
+  display: inline-block;
+  border: 1px solid #b7b7b7;
+  display: inline-flex;
+  align-items:center;
+  width: 25%;
+  padding: 1em 0;
+  background-color: #f2f2f2;
+  text-align: center;
+}
+.icons img{
+  float:left;
+  vertical-align: middle;
+  max-width: 100%;
+  margin-right: 0.5em;
+
+}
+#metro {
+  text-decoration: none;
+  text-align: center;
+  margin: 2em 1em 0 0;
+}
+#map{
+  width: 100%;
+}
+#map iframe{
+  margin: 0 auto;
+}
+
+footer {
+  position: absolute;
+  padding: 1em 0;
+  width: 100%;
+  bottom: 0;
+  background-color: #f3f3f3;
+  text-align: center;
+}
+#divSkills{
+  width: 100%;
+  height: 10em;
+  position: relative;
+  background-image:url(../images/navigator.jpg);
+  background-position: center 0.5em;
+  background-size: 22em auto;
+  background-repeat: no-repeat;
+  margin-bottom: 2em;
+}
+.skills {
+  width: 15%;
+  border: 1px solid black;
+  height: 1.5em;
+  position: absolute;
+  text-align: center;
+  font-size: 1em;
+  line-height: 1.3em;
+  cursor: pointer;
+}
+.skills:hover{
+  background-color: red;
+}
+.skillsmain{
+  width: 100%;
+}
+.skillsmain h2 {
+  text-align: center;
+  text-decoration: none;
+  text-transform: uppercase;
+}
+.skillsmain h3{
+  opacity: 1;
+  text-decoration: none;
+  text-decoration-line: underline;
+
+}
+iframe {
+  margin: 1em 0 3em 0;
+  padding: 0;
+  width: 100%;
+  height: 600px;
+  text-align: center;
+  border: 1px solid black;
+}
+@media (min-width: 1200px){
+  #root {
+    width: 1200px;
+  }
+
+
+}
+@keyframes maxImage {
+  from {
+    width: 50%;
+  }
+  to {
+    width: 100%;
+  }
+}
+@keyframes normImage {
+  from {
+    width: 100%;
+  }
+  to {
+    width: 50%;
+  }
+}
+.maxSize{
+  animation-name: maxImage;
+  animation-duration: 1s;
+  animation-timing-function: linear;
+  animation-fill-mode: forwards;
+}
+.normSize{
+  animation-name: normImage;
+  animation-duration: 1s;
+  animation-timing-function: linear;
+  animation-fill-mode: forwards;
+}
+
+@media (max-width: 1199px) and (min-width:950px){
+  html {
+  font-size: 18px;
+}
+  nav ul li{
+  width: 18%;
+}
+}
+
+@media (max-width: 949px)and (min-width:860px){
+  html {
+    font-size: 16px;
+  }
+  nav ul li{
+    width: 20%;
+  }
+}
+
+@media (max-width: 859px){
+  html {
+  font-size: 16px;
+}
+nav ul{
+  flex-direction: column;
+  justify-content: flex-start;
+  height: 0;
+  overflow: hidden;
+  margin-bottom: 10px;
+
+}
+nav ul li{
+  width: 100%;
+  border-bottom: none;
+}
+nav ul li:last-child{
+  border-bottom: 1px solid blue;
+}
+#divSkills{
+  flex-direction: column;
+  justify-content: flex-start;
+  margin-bottom: 10px;
+  position: static !important;
+  border-bottom: 1px solid black;
+  height: auto;
+  background-image:none;
+
+}
+.skills{
+  position: static !important;
+  width: 100%;
+  border-bottom: none;
+
+}
+#menu {
+  margin-top: 1%;
+  display: block;
+  cursor: pointer;
+  width: 100%;
+  font-size: 1.2rem;
+  text-align: center;
+  border: 1px solid red;
+  padding: 5px 0;
+}
+
+@keyframes showUl {
+  from {
+    height: 0em;
+  }
+  to {
+    height: 8.7em;
+  }
+}
+@keyframes hideUl {
+  from {
+    height: 8.7em;
+  }
+
+  to {
+    height: 0;
+  }
+}
+.showNavLi {
+animation-name: showUl;
+animation-duration: 1s;
+animation-timing-function: linear;
+animation-fill-mode: forwards;
+
+}
+.hideNavLi {
+animation-name: hideUl;
+animation-duration: 1s;
+animation-timing-function: linear;
+animation-fill-mode: forwards;
+
+}
+.items{
+  flex-direction: column;
+  justify-content: flex-start;
+}
+.icons{
+  width: 100%;
+}
+}
+@media (max-width: 630px){
+  #photo{
+    width: 100%;
+    float: none;
+  }
+}
+@media (max-width: 189px){
+
+@keyframes showUl {
+  from {
+    height: 0em;
+  }
+  to {
+    height: 10em;
+  }
+}
+@keyframes hideUl {
+  from {
+    height: 10em;
+  }
+
+  to {
+    height: 0;
+  }
+}
+}

@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<html><head>
+		<meta charset="utf-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1.0">
+		<style>
+      * {
+				box-sizing: border-box;
+				margin: 0;
+				padding: 0;
+			};
+			html {
+
+			}
+			body {
+
+			}
+			#wrapper{
+				font-size: 26px;
+				position: relative;
+				width: 100%;
+				text-align: center;
+				overflow: hidden;
+				height: 598px;
+			}
+			#p1 {
+				position: absolute;
+				text-align: center;
+				top: 50%;
+				left: 45%;
+				width: 10%;
+				opacity: 0;
+			}
+			#p2 {
+				position: absolute;
+				text-align: center;
+				width: 30%;
+				top: -10%;
+				left: 35%;
+				opacity: 1;
+				overflow: hidden;
+				text-align: center;
+			}
+			#p3 {
+				position: absolute;
+				text-align: center;
+				top: 100%;
+				left: 45%;
+				opacity: 1;
+				width: 10%;
+			}
+			img {
+				position: absolute;
+				bottom: 100%;
+				opacity: 1;
+				overflow: hidden;
+				width: 100%;
+				left: 0;
+			}
+			button {
+			position: absolute;
+			bottom: 4%;
+			left: 47.5%;
+			width: 5%;
+			}
+		</style>
+	</head>
+	<body>
+
+
+		<div id="wrapper">
+			<p id="p1">АНИМАЦИЯ</p>
+			<p id="p2">МОСИН АЛЕКСАНДР</p>
+			<p id="p3">УАУ!!!</p>
+			<img src="../images/js/theatre.png" alt="theatre">
+			<button>start</button>
+		</div>
+    <script type="text/javascript">
+		let button=document.querySelector('button');
+		let p1=document.querySelector('#p1');
+		let p2=document.querySelector('#p2');
+		let p3=document.querySelector('#p3');
+		let img=document.querySelector('img');
+		button.addEventListener('click', animateFunc);
+		function animateFunc(){
+			button.disabled=true;
+			img.style.bottom= '100%';
+			let duration=12000;
+			let start = performance.now();
+			requestAnimationFrame(function animate(time) {
+				 let timeFraction = (time - start) / duration;
+				 if (timeFraction > 1) {timeFraction = 1};
+				 if (timeFraction>=0 && timeFraction<=0.25) {step1(timeFraction)}
+				 if (timeFraction>0.25 && timeFraction<=0.5) {step2(timeFraction)}
+				 if (timeFraction>0.5 && timeFraction<=0.75) {step3(timeFraction)}
+				 else {step4(timeFraction)}
+				 if (timeFraction < 1) {requestAnimationFrame(animate);}else{
+					 button.disabled=false;
+					 p1.style.top='50%';
+					 p1.style.left= '45%';
+					 p1.style.opacity= 0;
+					 p2.style.top='-10%';
+	 				 p2.style.left= '35%';
+					 p3.style.top= '100%';
+					 p3.style.left= '45%';
+				 }
+		})
+
+	};
+	function step1(timeFraction ){
+		if(timeFraction<=0.125){
+		let opacity=8*timeFraction
+		p1.style.opacity=opacity;}
+		else {
+		let left=45+(timeFraction-0.125)*450;
+		p1.style.left=left+'%';
+		}
+	}
+	function step2(timeFraction ){
+		let top;
+		if(timeFraction<=0.35){
+		top=-10 + 600*(timeFraction-0.25);
+		p2.style.top=top+'%';}
+		else if(timeFraction>=0.4) {
+		top=50 + 500*(timeFraction-0.4);
+			p2.style.top=top+'%';
+		}
+	}
+	function step3(timeFraction ){
+		if(timeFraction<=0.6){
+		let top=100 - 500*(timeFraction-0.5);
+		p3.style.top=top+'%';}
+		else if(timeFraction>=0.65) {
+		let left=38 -500*(timeFraction-0.65);
+			p3.style.left=left+'%';
+		}
+	}
+	function step4(timeFraction ){
+		let bottom=100-(timeFraction-0.75)*400;
+		img.style.bottom=bottom+'%';
+	}
+
+    </script>
+</body></html>

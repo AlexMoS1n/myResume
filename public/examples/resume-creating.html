@@ -1,0 +1,460 @@
+<!DOCTYPE html>
+<html><head>
+		<meta charset="utf-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1.0">
+		<style>
+      * {
+				box-sizing: border-box;
+				margin: 0;
+				padding: 0;
+			}
+			#wrapper {
+				width: 100%;
+			}
+			.alarm-message{
+				display: none;
+				color: red;
+				margin-left: 5px;
+			}
+			.schoolJobNew {
+				margin-bottom: 9px;
+			}
+			#resume {
+				width: 100%;
+				display: none;
+			}
+			.resumeDivInfo {
+				margin-bottom: 8px;
+			}
+			h1,h2 {
+				width: 100%;
+				text-align: center;
+				margin-bottom: 10px;
+			}
+			#general-info {
+				width: 100%;
+				margin-bottom: 20px;
+			}
+			img {
+				float: left;
+				width: 26%;
+				border: 1px solid black;
+			}
+			#block-info {
+				margin: 0 0 0 20%;
+				padding-left: 2%;
+				display: flex;
+				flex-direction: column;
+				justify-content: space-between;
+				border: 1px solid black;
+			}
+			.divInfo{
+				border: 1px solid black;
+				margin-bottom: 10px;
+				margin-bottom: 20px;
+			}
+			.span-field {
+				font-weight: bold;
+			}
+		</style>
+	</head>
+	<body>
+		<div id="wrapper">
+			<form action="">
+				<label for="photo">Загрузить свое фото* (фото должно быть в папке сайт\public\examples\createResumeImages)</label>
+				<input name="photo" type="file"><div id="incorrect_photo" class="alarm-message">Оставьте поле пустым, либо выберете корректный файл изображения</div><br />
+				<label for="fio"> Введите ФИО* </label>
+				<input type="text" name="fio"></input><div id="incorrect_fio" class="alarm-message">Введите корректно ФИО (можно без отчества)</div><br />
+				<label for="gender"> Ваш пол: </label>
+				<label for="man">Мужчина</label>
+				<input type="radio" name="gender" value="мужчина" checked>
+				<label for="woman">Женщина</label>
+				<input type="radio" name="gender" value="женщина">
+				<br />
+				<label for="birthday">Ваш день рождения*</label>
+				<input name="birthday" type="date"><div id="incorrect_born" class="alarm-message"></div><br />
+				<label for="citizenship">Гражданство*</label>
+				<input type="text" name="citizenship"> </input><div id="incorrect_citizenship" class="alarm-message">Введите гражданство</div><br />
+				<label for="marital-status">Семейное положение</label>
+				<select name="marital-status">
+  			<option>Не замужем/не женат</option>
+  			<option>Разведена/разведен</option>
+				<option>Замужем/женат</option>
+				<option>Состою в гражданском браке</option>
+			</select> <br />
+			<label for="addressCity">Город проживания</label>
+			<input type="tel" name="addressCity"><br />
+			<label for="phone">Номер телефона*</label>
+			<input type="tel" name="phone"><div id="incorrect_phone" class="alarm-message">некорректный телефон</div><br />
+			<label for="email">E-mail*</label>
+			<input type="email" name="email"><div id="incorrect_email" class="alarm-message">неправильный email</div><br />
+			<label for="education">Ваше образование</label>
+			<select name="education">
+			<option selected>нет</option>
+			<option>Начальное общее образование</option>
+			<option>Основное общее образование</option>
+			<option>Среднее (полное) общее образование</option>
+			<option>Начальное профессиональное</option>
+			<option>Среднее профессиональное</option>
+			<option>Неполное высшее профессиональное</option>
+			<option>Высшее профессиональное</option>
+		 	</select> <br />
+			<button id="newSchool">Добавить школу</button>
+			<button id="newInstitute">Добавить ВУЗ, колледж, техникум и т.д.</button>
+			<button id="delSchool" style="display:none" disabled>Удалить учебное заведение</button>
+			<div id="mySchools"></div>
+			<div id="div-work">
+			<label for="work"> Работали вы ранее? </label>
+			<label for="yesWork">Да</label>
+			<input type="radio" name="work" value="yes">
+			<label for="noWork">Нет</label>
+			<input type="radio" name="work" value="no" checked>
+			</div>
+			<button id="newWork">Добавить информацию о рабочем месте</button>
+			<button id="delJob" style="display:none" disabled>Удалить рабочее место</button>
+			<div id="myJobs"></div>
+			<label for="personal-qualities">Выберите личные качества:</label><br />
+			<input type="checkbox" name="personal-qualities" value="вежливость">вежливость</input><br />
+			<input type="checkbox" name="personal-qualities" value="гибкость в общении">гибкость в общении</input><br />
+			<input type="checkbox" name="personal-qualities" value="пункутальность">пункутальность</input><br />
+			<input type="checkbox" name="personal-qualities" value="дружелюбие">дружелюбие</input><br />
+			<input type="checkbox" name="personal-qualities" value="коммуникабельность">коммуникабельность</input><br />
+			<input type="checkbox" name="personal-qualities" value="отзывчивость">отзывчивость</input><br />
+			<input type="checkbox" name="personal-qualities" value="стрессоустойчивость">стрессоустойчивость</input><br />
+			<input type="checkbox" name="personal-qualities" value="способность убеждать">способность убеждать</input><br />
+			<input type="checkbox" name="personal-qualities" value="справедливость">справедливость</input><br />
+			<input type="checkbox" name="personal-qualities" value="толерантность, уважительное отношение к людям">толерантность, уважительное отношение к людям</input><br />
+			<input type="checkbox" name="personal-qualities" value="умение работать в коллективе">умение работать в коллективе</input><br />
+			<input type="checkbox" name="personal-qualities" value="четкая дикция, грамотная речь">четкая дикция, грамотная речь</input><br />
+			<input type="checkbox" name="personal-qualities" value="амбициозность">амбициозность</input><br />
+			<input type="checkbox" name="personal-qualities" value="креативность">креативность</input><br />
+			<input type="checkbox" name="personal-qualities" value="ответственность">ответственность</input><br />
+			<input type="checkbox" name="personal-qualities" value="лидерство">лидерство</input><br />
+			<label for="languages">Знания языков:</label>
+			<input type="text" name="languages"> </input><br />
+			<label for="additional-information">Дополнительная информация о Вас:</label><br />
+			<textarea name="additional-information"></textarea><br />
+			<button id="buttonCreateResume">Создать резюме</button> <div id="not_create_resume" class="alarm-message">Обратите внимание! Какие-то из обязательных полей не заполнены или имеют некорректную информацию</div>
+			</form>
+			<div id="resume">
+				<h1>РЕЗЮМЕ</h1>
+				<h2>Общая информация</h2>
+					<div id="general-info">
+						<img src="createResumeImages/no-photo.png" alt="фото кандидата">
+						<div id="block-info">
+						</div>
+					</div>
+				<h2>Образование</h2>
+				<div id="myEducation" class="divInfo">
+				</div>
+				<h2>Опыт работы</h2>
+				<div id="myJobExperience" class="divInfo">
+				</div>
+				<h2>Информация обо мне</h2>
+				<div id="aboutMe" class="divInfo">
+				</div>
+				<h2>Контакты</h2>
+				<div id="myContacts" class="divInfo">
+				</div>
+				<button id="editResume">Редактировать резюме</button>
+			</div>
+    </div>
+
+
+
+
+
+	  <script type="text/javascript">
+		// Логика формы
+			let form=document.querySelector('form');
+			let photo=form.querySelector('input[name="photo"]');
+			let fio=form.querySelector('input[name="fio"]');
+			let genders=form.querySelectorAll('input[name="gender"]');
+			let citizenship=form.querySelector('input[name="citizenship"]');
+			let birthday=form.querySelector('input[name="birthday"]');
+			let maritalStatus=form.querySelector('select[name="marital-status"]');
+			let addressCity=form.querySelector('input[name="addressCity"]');
+			let tel=form.querySelector('input[name="phone"]');
+			let email=form.querySelector('input[name="email"]');
+			let education=form.querySelector('select[name="education"]');
+			let newSchool=form.querySelector('#newSchool');
+			let newInstitute=form.querySelector('#newInstitute');
+			let divWork = form.querySelector('#div-work');
+			let work = form.querySelectorAll('input[name="work"]');
+			let newWork=form.querySelector('#newWork');
+			let mySchools=form.querySelector('#mySchools');
+			let delSchool=form.querySelector('#delSchool');
+			let myJobs=form.querySelector('#myJobs');
+			let delJob=form.querySelector('#delJob');
+			let pq=form.querySelectorAll('input[name="personal-qualities"]');
+			let knLang=form.querySelector('input[name="languages"]');
+			let additionalInfo=form.querySelector('textarea[name="additional-information"]');
+			let buttonCreateResume=form.querySelector('#buttonCreateResume');
+			let notCreateResume=form.querySelector('#not_create_resume');
+			let arrCreateResume=[true,false,false,false,false,false];
+			let age;
+			photo.addEventListener('change',function(){
+			incorrect_message(/(^\s*$)|(\.((jpg)|((jpeg))|(png)|(gif)|(svg)))$/i,this,0)});
+			birthday.addEventListener('blur',function(){
+				let now  = new Date();
+				let born_arr=this.value.split('-')
+				let born=new Date(born_arr[0],born_arr[1]-1,born_arr[2]);
+				age = now.getFullYear() - born.getFullYear();
+				let month = now.getMonth() - born.getMonth();
+					if (month < 0 || (month === 0 && now.getDate() < born.getDate())) {
+						age--;
+					};
+			if(age<18&&age>=0){
+			this.nextSibling.innerHTML='Тебе всего '+age+'. Отдыхай, тебе ще рано работать.';
+			this.nextSibling.style.display='inline-block';
+			arrCreateResume[2]=false;
+		}else if(age<0){
+			this.nextSibling.innerHTML='Вы человек из будущего? :-) ';
+			this.nextSibling.style.display='inline-block';
+			arrCreateResume[2]=false;
+		}
+		 else {this.nextSibling.style.display='none';
+		 arrCreateResume[2]=true;
+			}
+	 });
+	 		fio.addEventListener('blur',function(){incorrect_message(/^.+\s.+\s?.*$/i,this,1)});
+			citizenship.addEventListener('blur',function(){incorrect_message(/^[а-яёa-z]{2,}/i,this,3)});
+			email.addEventListener('blur',function(){incorrect_message(/^[\w-\.]+@[\w-]+\.[a-z]{2,4}$/i,this,4)});
+			tel.addEventListener('blur',function(){incorrect_message(/^[\+\d][\d\(\)\ -]{4,14}\d$/,this,5)});
+			function incorrect_message (regexp,self,indexArrCreateResume){
+				if(!regexp.test(self.value)){
+			arrCreateResume[indexArrCreateResume]=false;
+			self.nextElementSibling.style.display="inline-block"
+			}else {
+				arrCreateResume[indexArrCreateResume]=true;
+				self.nextElementSibling.style.display="none"}
+			};
+			showNewSchool();
+			education.addEventListener('change',showNewSchool);
+			function showNewSchool(){
+				if(education.selectedIndex===0){
+					newSchool.style.display='none';
+					newInstitute.style.display='none';
+					delSchool.disabled=true;
+					delSchool.style.display='none';
+					mySchools.innerHTML='';
+				}else if(education.selectedIndex>=1&&education.selectedIndex<=3){
+					newSchool.style.display='inline-block';
+					newInstitute.style.display='none';
+				}else{
+					newSchool.style.display='inline-block';
+					newInstitute.style.display='inline-block';
+				}
+			};
+			showNewWork();
+			divWork.addEventListener('click',showNewWork);
+			function showNewWork(){
+				let yesOrNoWork;
+				for(let elem of work){
+					if(elem.checked){yesOrNoWork=elem}
+				};
+				if(yesOrNoWork.value==='yes'){newWork.style.display='inline-block'}else {
+						newWork.style.display='none';
+						myJobs.innerHTML='';
+						delJob.style.display='none';
+						delJob.disabled=false;
+				}
+			};
+			newSchool.addEventListener('click',function(event){
+				event.preventDefault();
+				delSchool.style.display='inline-block';
+				delSchool.disabled=false;
+				createNewInstituteOrJob(mySchools,'Название','Город')
+			});
+			newInstitute.addEventListener('click',function(event){
+				event.preventDefault();
+				delSchool.style.display='inline-block';
+				delSchool.disabled=false;
+				createNewInstituteOrJob(mySchools,'Название','Специальность','Факультет')
+			});
+			delSchool.addEventListener('click',function(event){
+				event.preventDefault();
+				delInstituteOrJob(mySchools,this)
+			});
+
+			newWork.addEventListener('click',function(event){
+				event.preventDefault();
+				delJob.style.display='inline-block';
+				delJob.disabled=false;
+				createNewInstituteOrJob(myJobs,'Название','Профессия')
+			});
+			delJob.addEventListener('click',function(event){
+				event.preventDefault();
+				delInstituteOrJob(myJobs,this)
+			});
+
+			function createNewInstituteOrJob(divContener,nameFacility,namePosition,...rest){
+				let	divNewFacility=document.createElement('div');
+				divNewFacility.classList.add('schoolJobNew');
+				createLabelInput('Года пребывания');
+				createLabelInput(nameFacility);
+				createLabelInput(namePosition);
+				if(rest.length){createLabelInput(rest[0])};
+				divContener.appendChild(divNewFacility);
+				function createLabelInput(Name){
+					let labelNew=document.createElement('label');
+					labelNew.innerHTML=Name;
+					labelNew.htmlFor=Name;
+					let inputNew=document.createElement('input');
+					inputNew.type='text';
+					inputNew.name=Name;
+					inputNew.style.marginRight='5px';
+					divNewFacility.appendChild(labelNew);
+					divNewFacility.appendChild(inputNew);
+				}
+			};
+			function delInstituteOrJob(divContener,self){
+				divContener.lastChild.remove();
+				if(!divContener.children.length){
+					self.style.display='none'
+					self.disabled=true;
+				}
+			};
+
+			//логика резюме
+
+			let blockInfo=document.querySelector('#block-info');
+			let imgPhoto=document.querySelector('img');
+			let pInfo=document.querySelectorAll('.pInfo');
+			let pFIO=document.querySelector('#pFIO');
+			let pGender=document.querySelector('#pGender');
+			let pBorn=document.querySelector('#pBorn');
+			let pYears=document.querySelector('#pYears');
+			let pCitizenship=document.querySelector('#pCitizenship');
+			let pMarried=document.querySelector('#pMarried');
+			let myEducation=document.querySelector('#myEducation');
+			let myJobExperience=document.querySelector('#myJobExperience');
+			let aboutMe=document.querySelector('#aboutMe');
+			let myContacts=document.querySelector('#myContacts');
+			window.addEventListener('resize',resizeHeightBlockInfo);
+			function resizeHeightBlockInfo(){
+				blockInfo.style.height = getComputedStyle(imgPhoto).height;
+			};
+			resizeHeightBlockInfo();
+			buttonCreateResume.addEventListener('click',function(event){
+				event.preventDefault();
+				blockInfo.innerHTML='';
+				if(arrCreateResume.every(element=>element)){
+				form.style.display='none';
+				notCreateResume.style.display='none';
+				resume.style.display='block';
+				new Promise((resolve,reject)=>{if(photo.value==''||photo.value==undefined){imgPhoto.src='createResumeImages/no-photo.png'}
+				else {
+					let photoPofile=photo.value.match(/[\wа-яё-]+\.[a-z]{3,4}/i)[0];
+					imgPhoto.src='createResumeImages/'+photoPofile};
+					imgPhoto.onload=()=>resolve(imgPhoto);
+					imgPhoto.onerror=()=>reject('createResumeImages/no-photo.png')
+				}).then(img=>{
+					blockInfo.style.height=getComputedStyle(img).height},
+					path=>{
+						new Promise((result)=>{imgPhoto.src=path;
+							imgPhoto.onload=()=>result(imgPhoto);
+						}).then(img=>{
+							blockInfo.style.height=getComputedStyle(img).height})
+					}
+				);
+
+			function insertInfo(divName,field,content){
+				let pNew=document.createElement('p');
+				pNew.classList.add='pinfo';
+				let spanField=document.createElement('span');
+				let spanContent=document.createElement('span');
+				spanField.classList.add('span-field');
+				spanContent.classList.add('span-content');
+				spanField.innerHTML=field+': ';
+				spanContent.innerHTML=content;
+				pNew.appendChild(spanField);
+				pNew.appendChild(spanContent);
+				divName.appendChild(pNew);
+			};
+			insertInfo(blockInfo,'ФИО',fio.value);
+			insertInfo(blockInfo,'Гражданство',citizenship.value)
+
+			let manOrWoman;
+			for (let gender of genders) {
+				if (gender.checked) {
+					manOrWoman=gender;
+					insertInfo(blockInfo,'Пол',manOrWoman.value);
+				}
+			};
+			insertInfo(blockInfo,'Дата рождения',birthday.value.split('-').reverse().join('-'));
+			insertInfo(blockInfo,'Дата рождения',age);
+			if(maritalStatus.selectedIndex>=0&&maritalStatus.selectedIndex<=2){
+				let pob=maritalStatus.value.split('/');
+				if(manOrWoman.value==='мужчина'){insertInfo(blockInfo,'Семейное положение',pob[1].toLowerCase())}
+				else {insertInfo(blockInfo,'Семейное положение',pob[0].toLowerCase())}
+			} else{
+					insertInfo(maritalStatus,pMarried);insertInfo(blockInfo,'Семейное положение',maritalStatus.value)
+			};
+			function jobOrEducationAdd(divIn,divOut,strNone){
+				let arrGood=[];
+				if(divIn.children.length){
+					for(let elem of divIn.children) {
+					if(Array.from(elem.children).every(function(inp){
+					if(inp.tagName=='LABEL'){return true}
+					else if(inp.tagName=='INPUT'&& !inp.value==''){return true}
+					else {return false}
+				})
+			){arrGood.push(elem)}
+		};
+	};
+	if(!arrGood.length){divOut.innerHTML=strNone} else {
+		divOut.innerHTML='';
+		for(let divEl of arrGood){
+			let divNew=document.createElement('div');
+			divNew.classList.add('resumeDivInfo');
+			Array.from(divEl.children).forEach(function(elem){
+				if(elem.tagName=='INPUT'){
+					let p=document.createElement('p');
+					let spanFileld=document.createElement('span');
+					let spanContent=document.createElement('span');
+					spanFileld.classList.add('span-field');
+					spanContent.classList.add('span-content');
+					spanFileld.innerHTML=elem.name+': ';
+					spanContent.innerHTML=elem.value;
+					p.appendChild(spanFileld);
+					p.appendChild(spanContent);
+					divNew.appendChild(p);
+				}
+			})
+			divOut.appendChild(divNew);
+		}
+	}
+};
+		jobOrEducationAdd(mySchools,myEducation,'Образования нет');
+		jobOrEducationAdd(myJobs,myJobExperience,'Нигде не работал');
+		aboutMe.innerHTML='';
+		let pqHave=Array.from(pq).some(elem=>elem.checked);
+ 			if(!pqHave&&knLang.value==''&&additionalInfo.value==''){
+				aboutMe.innerHTML='Нет никакой информации';
+			}else {
+				if(pqHave){
+					let arrChecked=[];
+					for (let liPQ of pq){
+						if (liPQ.checked) {arrChecked.push(liPQ.value)};
+					};
+						insertInfo(aboutMe,'Личные качества',arrChecked.join(', '))
+				};
+				if(knLang.value!=''){insertInfo(aboutMe,'Знания языков',knLang.value)}
+				if(additionalInfo.value!=''){insertInfo(aboutMe,'Дополнительная информация',additionalInfo.value)}
+			};
+				myContacts.innerHTML='';
+				if(addressCity.value!=''){insertInfo(myContacts,'Город проживания',addressCity.value);}
+				insertInfo(myContacts,'Электронная почта',email.value);
+				insertInfo(myContacts,'Телефонный номер',tel.value);
+				editResume.addEventListener('click',function(){
+					resume.style.display='none';
+					form.style.display='block';
+				})
+			}else{
+				notCreateResume.style.display='inline-block';
+				resume.style.display='none';
+			}
+		});
+    </script>
+</body></html>

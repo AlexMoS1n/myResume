@@ -1,0 +1,211 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title>Крестики нолики</title>
+		<style>
+		* {
+			box-sizing: border-box;
+		}
+	#game {
+    width: 40%;
+    margin: 0 auto;
+    font-size: 30px;
+}
+.cell {
+    width: 30%;
+    text-align: center;
+    font-family: arial;
+    display: inline-block;
+    font-size: 1em;
+    border: 1px solid #000;
+    cursor: pointer;
+    vertical-align: middle;
+		margin: 0;
+		padding: 0
+}
+#message {
+    text-align: center;
+}
+#restart {
+    margin: 0 auto;
+    display: block;
+}
+#statistics {
+    position: absolute;
+    right: 2%;
+    top: 2%;
+    border: 1px solid;
+    padding: 0 1%;
+    display: inline-block;
+		font-size: 1em;
+}
+@media (max-width: 400px)and (min-width:275px){
+		#game {
+	  margin: 0;
+		width: 70%;
+	}
+	#statistics{
+		font-size: 0.7em;
+	}
+}
+@media (max-width: 400px){
+	#game {
+	margin: 0;
+	width: 100%;
+}
+#statistics{
+	font-size: 0.7em;
+	position: static;
+	margin: 1em;
+}
+}
+
+		</style>
+	</head>
+	<body>
+	<div id="game">
+		<div class="cell" data-id="0"></div>
+		<div class="cell" data-id="1"></div>
+		<div class="cell" data-id="2"></div>
+		<div class="cell" data-id="3"></div>
+		<div class="cell" data-id="4"></div>
+		<div class="cell" data-id="5"></div>
+		<div class="cell" data-id="6"></div>
+		<div class="cell" data-id="7"></div>
+		<div class="cell" data-id="8"></div>
+	</div>
+	<p id="message">
+		Ходит: X
+	</p>
+	<input type="button" id="restart" value="Начать сначала">
+	<div id="statistics">
+		<p>
+			Выиграл <b>X</b>: <span id="win_x">0</span>
+		</p>
+		<p>
+			Выиграл <b>O</b>: <span id="win_0">0</span>
+		</p>
+		<p>
+			Ничья: <span id="win_draw">0</span>
+		</p>
+	</div>
+
+
+
+
+<script type="text/javascript">
+let winIndex = [
+      [0, 1, 2],
+      [3, 4, 5],
+      [6, 7, 8],
+      [0, 3, 6],
+      [1, 4, 7],
+      [2, 5, 8],
+      [0, 4, 8],
+      [2, 4, 6]
+    ];
+let hO=0;
+let hX=0;
+let all_step=0;
+let static=document.querySelector('#statistics');
+let cell=document.querySelectorAll('.cell');
+let game=document.querySelector('#game');
+let message=document.querySelector('#message');
+let win_x=document.querySelector('#win_x');
+let win_0=document.querySelector('#win_0');
+let win_draw=document.querySelector('#win_draw');
+let restart=document.querySelector('#restart');
+let who_step=true;
+const ob=9;
+game.addEventListener('click',hodX);
+restart.addEventListener('click',clear);
+function hodX(event){
+  if(event.target.matches('.cell')&&event.target.innerHTML==''){
+  event.target.innerHTML='X';
+  hX++; all_step++;
+  if(hX>=3&&proverka('X')){alert('Победил Х');
+    game.removeEventListener('click',hodX);
+    message.innerHTML='Выиграл: X';
+    win_x.innerHTML=Number(win_x.innerHTML)+1;
+}else if(all_step==ob){
+  alert('Ничья');
+  win_draw.innerHTML=Number(win_draw.innerHTML)+1;
+  message.innerHTML='Ничья';
+}
+else{
+  message.innerHTML='Ходит: O';
+  game.removeEventListener('click',hodX);
+  game.addEventListener('click',hodO);}
+}
+};
+function hodO(event){
+  if(event.target.matches('.cell')&&event.target.innerHTML==''){
+  event.target.innerHTML='O';
+  hO++; all_step++;
+  if(hO>=3&&proverka('O')){alert('Победил O');
+  game.removeEventListener('click',hodO);
+  message.innerHTML='Выиграл: O';
+  win_0.innerHTML=Number(win_0.innerHTML)+1;
+}
+else if(all_step==ob){
+  alert('Ничья');
+   alert('Борян, ты че сам у себя не можешь выиграть???');
+  win_draw.innerHTML=Number(win_draw.innerHTML)+1;
+  message.innerHTML='Ничья';
+}
+
+
+else{
+  message.innerHTML='Ходит: X';
+  game.removeEventListener('click',hodO);
+  game.addEventListener('click',hodX);}
+}
+};
+function proverka(igr){
+let arr=[];
+for(key of cell) {
+  if(key.innerHTML==igr){arr.push(Number(key.dataset.id))}
+};
+console.log(arr);
+
+for(let n of winIndex){
+let sum=0;
+for(i of n){
+if(arr.includes(i)){sum++}
+};
+if(sum==3){return true}
+};
+
+return false;
+};
+
+function clear(){
+  for(key of cell){
+    key.innerHTML='';
+  }
+  all_step=0;
+  hO=0;
+  hX=0;
+who_step=!who_step;
+if(who_step){
+   message.innerHTML='Ходит: X';
+   game.addEventListener('click',hodX);
+} else{
+  message.innerHTML='Ходит: O';
+  game.addEventListener('click',hodO);
+}
+};
+function resizeWndow(){
+	for(elem of cell){
+		let elemStyle=getComputedStyle(elem);
+		elem.style.height=elemStyle.width;
+		elem.style.lineHeight=elemStyle.width;
+	}
+};
+resizeWndow();
+window.addEventListener('resize', resizeWndow, true);
+
+</script>
+	</body>
+</html>

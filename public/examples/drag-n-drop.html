@@ -1,0 +1,151 @@
+<!DOCTYPE html>
+<html><head>
+		<meta charset="utf-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1.0">
+		<style>
+      * {
+				box-sizing: border-box;
+				margin: 0;
+				padding: 0;
+			}
+      #wrapper {
+				position: relative;
+        width:100%;
+        height:590px;
+      }
+			.goods {
+				position: absolute;
+				width: 15%;
+				left:5%;
+				z-index: 1;
+			}
+			#kefir {
+				top:5%;
+			}
+			#eggs {
+				top:40%;
+			}
+			#bread {
+				top:70%;
+			}
+			#cart-div {
+				position: absolute;
+				top:8%;
+				width: 45%;
+				right: 5%;
+				padding: 0;
+			}
+			#cart {
+				position: relative;
+				width: 100%;
+				z-index:10;
+			}
+			#clear {
+				position: absolute;
+				top:5px;
+				left:45%;
+				width: 10%;
+			}
+			#arrow {
+				position: absolute;
+				width: 10%;
+				left: 45%;
+			}
+			@keyframes push {
+				0%{
+					top: -5%;
+				}
+				100% {
+					top:5%;
+				}
+			}
+			.unpush {
+				opacity: 0;
+			}
+			.push-good {
+				animation-name: push;
+				animation-duration: 0.5s;
+				animation-timing-function:ease-in;
+				animation-iteration-count:infinite;
+				animation-direction:alternate;
+			}
+			@media (max-width:600px){
+				#clear {
+					left:40%;
+					width: 20%;
+				}
+			}
+		</style>
+	</head>
+	<body>
+
+
+		<div id="wrapper">
+			<img class="goods" id="kefir" src="../images/js/kefir.png" draggable="true">
+			<img class="goods" id="eggs" src="../images/js/eggs.png" draggable="true">
+			<img class="goods" id="bread" src="../images/js/bread.png" draggable="true">
+			<div id="cart-div">
+			<img  id="cart" src="../images/js/cart.png" draggable="false">
+			<img id="arrow" class="unpush" src="../images/js/arrow.png">
+			</div>
+			<button id="clear">очистить корзину</button>
+      </div>
+    <script type="text/javascript">
+		let wrapper=document.querySelector('#wrapper');
+		let goods=document.querySelectorAll('.goods');
+		let cart=document.querySelector('#cart-div');
+		let clearBt=document.querySelector('#clear');
+		let arrow=document.querySelector('#arrow');
+		goods.forEach(function(elem,index){
+			elem.addEventListener('dragstart',function(event){
+				event.dataTransfer.setData('key',index);
+			})
+		})
+		cart.addEventListener('dragover',function(event){
+			event.preventDefault();
+		});
+		cart.addEventListener('dragenter',function(){
+			arrow.classList.remove('unpush');
+			arrow.classList.add('push-good');
+		});
+		cart.addEventListener('drop',function(){
+			arrow.classList.remove('push-good');
+			arrow.classList.add('unpush');
+			let index=Number(event.dataTransfer.getData('key'));
+			let elem=goods[index];
+			elem.style.width='20%';
+			switch (elem.getAttribute('Id')){
+				case 'kefir':
+					elem.style.top='40%';
+					elem.style.left='20%';
+					break;
+					case 'eggs':
+						elem.style.top='40%';
+						elem.style.left='40%';
+						break;
+					case 'bread':
+						elem.style.top='35%';
+						elem.style.left='65%';
+						break;
+					default:
+	alert('вы ничего не положили в корзину');
+			break;
+			}
+			this.appendChild(elem);
+		});
+		clear.addEventListener('click',function(){
+			let arrClear=cart.children;
+			let arrResurrected=[];
+			for(let i=0; i<arrClear.length;i++){
+				if(arrClear[i].classList.contains('goods')){
+					arrResurrected.push(arrClear[i]);
+					arrClear[i].remove();
+					i--}
+			};
+			for(let revenant of arrResurrected){
+			revenant.removeAttribute('style');
+			wrapper.appendChild(revenant);
+		}
+	});
+    </script>
+</body></html>

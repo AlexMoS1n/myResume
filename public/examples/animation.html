@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html><head>
+		<meta charset="utf-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1.0">
+		<style>
+      * {
+				box-sizing: border-box;
+
+			}
+      #wrapper {
+        width: 100%;
+        height: 540px;
+        position: relative;
+
+      }
+
+
+      @keyframes tg1 {
+      0% {
+        bottom:0%;
+      }
+
+      50% {
+        bottom: 50%;
+      }
+      80% {
+        bottom:60%
+      }
+      100% {
+        bottom: 70%
+      }
+      }
+
+			@keyframes tg2 {
+			0% {
+				bottom:0%;
+			}
+			100% {
+				bottom: 68%;
+				transform: scale(1.5);
+			}
+			}
+			@keyframes tg3 {
+			0% {
+				bottom:0%;
+			}
+			50% {
+				transform: rotate(-360deg);
+			}
+			100% {
+				bottom: 75%;
+				transform: rotate(-180deg);
+			}
+			}
+
+      .tigers {
+        width:10%;
+        bottom:0;
+				position: absolute;
+				z-index: 1;
+      }
+      #tiger1{
+        left:5%;
+        animation-name: tg1;
+        animation-duration: 3s;
+        animation-timing-function:ease-in;
+        animation-iteration-count:infinite;
+        animation-direction:alternate;
+      }
+      #tiger2{
+        left:45%;
+				animation-name: tg2;
+				animation-duration: 1s;
+				animation-timing-function:linear;
+				animation-iteration-count:infinite;
+				animation-direction:alternate;
+      }
+      #tiger3{
+        left:85%;
+				animation-name: tg3;
+				animation-duration: 3s;
+				animation-timing-function:ease-in;
+				animation-iteration-count:infinite;
+				animation-direction:alternate;
+      }
+			#botline{
+				position: absolute;
+				bottom: 0;
+				width: 100%;
+				border-bottom: 3px solid black;
+				z-index: 100;
+			}
+
+		</style>
+	</head>
+	<body>
+
+		<div id="wrapper">
+			<div id="topline"></div>
+      <img src="../images/html/tiger.png" alt="tiger1" id="tiger1" class="tigers">
+      <img src="../images/html/tiger.png" alt="tiger2" id="tiger2" class="tigers">
+      <img src="../images/html/tiger.png" alt="tiger3" id="tiger3" class="tigers">
+			<div id="botline"></div>
+		</div>
+</body></html>
