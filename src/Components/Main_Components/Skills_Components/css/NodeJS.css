@@ -1,0 +1,103 @@
+.skillsmain h2 {
+  margin: 50px auto 10px auto;
+}
+.skillsmain h3 {
+  margin: 30px auto 10px auto;
+}
+.skillsmain h4 {
+  margin: 15px auto 8px auto;
+  font-size: 22px;
+}
+.inputNodeJS {
+  padding: 5px 0;
+  border-radius: 4px;
+  text-align: center;
+  font-weight: bold;
+  margin: 0 10px;
+  border: 2px solid black;
+}
+.textareaNodeJS{
+    border-radius: 4px;
+    font-weight: bold;
+    border: 2px solid black;
+    margin: 0 10px;
+}
+.buttonNodeJS,.buttonDelNodeJS{
+  background-color: white;
+  padding: 5px 8px;
+  margin: 0 10px;
+  border-radius: 4px;
+}
+.buttonNodeJS:hover {
+  background-color: green;
+  cursor: pointer;
+}
+.buttonDelNodeJS:hover {
+  background-color: red;
+  cursor: pointer;
+}
+.explanationText  ul {
+  margin: 10px 0 10px 5%;
+}
+.explanationText  ul li {
+  margin-bottom: 8px;
+}
+.divCreatePosts {
+  margin: 16px 0;
+}
+.divCreatePosts label {
+  display: block;
+  margin-bottom: 6px;
+}
+#divWrapperMaket {
+  box-sizing: border-box;
+  width: 100%;
+  height: 600px;
+  border: 1px solid black;
+}
+#divHeaderMaket, #divFooterMaket {
+  width: 100%;
+  height: 100px;
+  text-align: center;
+  line-height: 100px;
+  font-size: 40px
+}
+#divHeaderMaket {
+  border-bottom: 1px solid black;
+}
+#divFooterMaket {
+  border-top: 1px solid black;
+}
+#divHeaderMaket a {
+  display: block;
+  text-decoration: none;
+}
+#divMainMaket {
+  width: 100%;
+  height: 380px;
+}
+#divMainMaket nav {
+  margin-top: 20px;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-around;
+}
+#divMainMaket nav a {
+  display: inline-block;
+  text-align: center;
+  padding: 4px 0;
+  width: 16%;
+  border: 1px solid black;
+  background-color: white;
+  border-radius: 4px;
+  text-decoration: none;
+  color: black;
+}
+.activeLinkMaket {
+  background: red !important;
+}
+#divContentMaket{
+  height: 100%;
+  text-align: center;
+  padding-top: 80px;
+}
